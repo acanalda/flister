@@ -2,14 +2,14 @@
   "name": "flister",
   "version": "1.0.0",
   "description": "This module lists and groups all the folder and files in a given directory ",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test './test/**/*.spec.js'"
   },
   "author": "Arturo Canalda",
   "license": "ISC",
-  "dependencies": {
-    "chai": "^3.5.0",
+  "devDependencies": {
+    "expect": "^1.20.2",
     "mocha": "^3.2.0"
   }
 }
