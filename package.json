@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "This module lists and groups all the folder and files in a given directory ",
   "main": "src/index.js",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/edmunfollen/flister.git"
+  },
   "scripts": {
     "test": "mocha test './test/**/*.spec.js'"
   },
