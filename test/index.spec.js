@@ -22,8 +22,16 @@ describe('Folder lister tests', function() {
       ]
     };
 
+    // Sort for easier comparisson
+    expected.filenames = expected.filenames.sort();
+    expected.dirnames = expected.dirnames.sort();
+
     return flister(pathName)
       .then((result) => {
+        // Sort to allow matching
+        result.filenames = result.filenames.sort();
+        result.dirnames = result.dirnames.sort();
+
         expect(result).toEqual(expected);
       })
       .catch((err) => {
@@ -41,14 +49,22 @@ describe('Folder lister tests', function() {
         `${pathName}/bar/bar2.txt`,
       ],
       dirnames: [
-        // Missing Folder
+        // !---- Missing Folder  ----!
         `${pathName}/bar`,
         `${pathName}/baz`,
       ]
     };
 
+    // Sort for easier comparisson
+    expected.filenames = expected.filenames.sort();
+    expected.dirnames = expected.dirnames.sort();
+
     return flister(pathName)
       .then((result) => {
+        // Sort to allow matching
+        result.filenames = result.filenames.sort();
+        result.dirnames = result.dirnames.sort();
+
         expect(result).toNotEqual(expected);
       })
       .catch((err) => {

@@ -8,6 +8,7 @@
     "url" : "https://github.com/edmunfollen/flister.git"
   },
   "scripts": {
+    "touch_test_folders": "mkdir test/testFolders/foo/baz",
     "test": "mocha test './test/**/*.spec.js'"
   },
   "author": "Arturo Canalda",
