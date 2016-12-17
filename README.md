@@ -29,4 +29,6 @@ This is a basic module that goes recursively through all the subdirectories of a
 - `npm test` - It will run the unit tests
    
 ### TODO 
+- Test on Windows
+- Increase the number of folders
 - Add eslint
