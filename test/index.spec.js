@@ -4,12 +4,12 @@ const fs = require('fs');
 const flister = require('../src/index');
 
 describe('Folder lister tests', function() {
-  const pathName = path.resolve(`${__dirname}/testFolders/foo`);
+  const fooPath = path.resolve(`${__dirname}/testFolders/foo`);
 
   before(function() {
-    const bazDir = `${pathName}/baz`;
+    const bazDir = `${fooPath}/baz`;
 
-    // Create empty 'baz' test folder
+    // Create empty 'baz' test folder (git doesn't allow empty folders)
     if (!fs.existsSync(bazDir)){
       fs.mkdirSync(bazDir);
     }
@@ -18,15 +18,15 @@ describe('Folder lister tests', function() {
   it('should match the files and folders', function() {
     const expected = {
       filenames: [
-        `${pathName}/f1.txt`,
-        `${pathName}/f2.txt`,
-        `${pathName}/bar/bar1.txt`,
-        `${pathName}/bar/bar2.txt`,
+        `${fooPath}/f1.txt`,
+        `${fooPath}/f2.txt`,
+        `${fooPath}/bar/bar1.txt`,
+        `${fooPath}/bar/bar2.txt`,
       ],
       dirnames: [
-        `${pathName}`,
-        `${pathName}/bar`,
-        `${pathName}/baz`,
+        `${fooPath}`,
+        `${fooPath}/bar`,
+        `${fooPath}/baz`,
       ]
     };
 
@@ -34,7 +34,7 @@ describe('Folder lister tests', function() {
     expected.filenames = expected.filenames.sort();
     expected.dirnames = expected.dirnames.sort();
 
-    return flister(pathName)
+    return flister(fooPath)
       .then((result) => {
         // Sort to allow matching
         result.filenames = result.filenames.sort();
@@ -50,15 +50,15 @@ describe('Folder lister tests', function() {
   it('should not match the files and folders', function() {
     const expected = {
       filenames: [
-        `${pathName}/f1.txt`,
-        `${pathName}/f2.txt`,
-        `${pathName}/bar/bar1.txt`,
-        `${pathName}/bar/bar2.txt`,
+        `${fooPath}/f1.txt`,
+        `${fooPath}/f2.txt`,
+        `${fooPath}/bar/bar1.txt`,
+        `${fooPath}/bar/bar2.txt`,
       ],
       dirnames: [
         // !---- Missing Folder  ----!
-        `${pathName}/bar`,
-        `${pathName}/baz`,
+        `${fooPath}/bar`,
+        `${fooPath}/baz`,
       ]
     };
 
@@ -66,7 +66,7 @@ describe('Folder lister tests', function() {
     expected.filenames = expected.filenames.sort();
     expected.dirnames = expected.dirnames.sort();
 
-    return flister(pathName)
+    return flister(fooPath)
       .then((result) => {
         // Sort to allow matching
         result.filenames = result.filenames.sort();
