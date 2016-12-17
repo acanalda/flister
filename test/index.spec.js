@@ -1,13 +1,21 @@
 const expect = require('expect');
 const path = require('path');
+const fs = require('fs');
 const flister = require('../src/index');
 
-const FOLDERS_PATH = `${__dirname}/testFolders`;
-
 describe('Folder lister tests', function() {
+  const pathName = path.resolve(`${__dirname}/testFolders/foo`);
+
+  before(function() {
+    const bazDir = `${pathName}/baz`;
+
+    // Create empty 'baz' test folder
+    if (!fs.existsSync(bazDir)){
+      fs.mkdirSync(bazDir);
+    }
+  });
 
   it('should match the files and folders', function() {
-    const pathName = path.resolve(`${FOLDERS_PATH}/foo`);
     const expected = {
       filenames: [
         `${pathName}/f1.txt`,
@@ -40,7 +48,6 @@ describe('Folder lister tests', function() {
   });
 
   it('should not match the files and folders', function() {
-    const pathName = path.resolve(`${FOLDERS_PATH}/foo`);
     const expected = {
       filenames: [
         `${pathName}/f1.txt`,
